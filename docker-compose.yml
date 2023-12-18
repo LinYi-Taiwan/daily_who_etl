@@ -18,11 +18,11 @@ services:
   # run launcher to use this same image when launching runs in a new container as well.
   # Multiple containers like this can be deployed separately - each just needs to run on
   # its own port, and have its own entry in the workspace.yaml file that's loaded by the
-      # webserver.
+  # webserver.
   docker_example_user_code:
     build:
       context: .
-      dockerfile: ./Dockerfile_user_code
+      dockerfile: ./docker/Dockerfile_user_code
     container_name: docker_example_user_code
     image: docker_example_user_code_image
     restart: always
@@ -40,7 +40,7 @@ services:
   docker_example_webserver:
     build:
       context: .
-      dockerfile: ./Dockerfile_dagster
+      dockerfile: ./docker/Dockerfile_dagster
     entrypoint:
       - dagster-webserver
       - -h
@@ -72,7 +72,7 @@ services:
   docker_example_daemon:
     build:
       context: .
-      dockerfile: ./Dockerfile_dagster
+      dockerfile: ./docker/Dockerfile_dagster
     entrypoint:
       - dagster-daemon
       - run
